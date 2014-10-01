@@ -1,5 +1,6 @@
---- MemberListView-old.js	2014-03-21 20:54:57.764793256 +0300
-+++ MemberListView.js	2014-03-21 20:55:12.761110324 +0300
+diff --git a/js/3rdparty/webodf/editor/MemberListView.js b/js/3rdparty/webodf/editor/MemberListView.js
+--- a/js/3rdparty/webodf/editor/MemberListView.js
++++ b/js/3rdparty/webodf/editor/MemberListView.js
 @@ -116,6 +116,7 @@
                  //avatar.getCaret().hideHandle();
              };
