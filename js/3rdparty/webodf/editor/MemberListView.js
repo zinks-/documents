@@ -62,6 +62,11 @@ define("webodf/editor/MemberListView",
                             node.src = memberDetails.imageUrl;
                             // update border color
                             node.style.borderColor = memberDetails.color;
+						} else if (node.localName === "span" && memberDetails.imageUrl){
+							try {
+								$(node).avatar(memberDetails.imageUrl, 60);
+							} catch (e){}
+							node.style.borderColor = memberDetails.color;
                         } else if (node.localName === "div") {
                             node.setAttribute('fullname', memberDetails.fullName);
                         }
@@ -81,7 +86,7 @@ define("webodf/editor/MemberListView",
             var doc = memberListDiv.ownerDocument,
                 htmlns = doc.documentElement.namespaceURI,
                 avatarDiv = doc.createElementNS(htmlns, "div"),
-                imageElement = doc.createElement("img"),
+                imageElement = doc.createElement("span"),
                 fullnameNode = doc.createElement("div");
 
             avatarDiv.className = "webodfeditor-memberListButton";
@@ -97,9 +102,10 @@ define("webodf/editor/MemberListView",
                 //avatar.getCaret().hideHandle();
             };
             avatarDiv.onclick = function () {
+                documentsMain.onNickChange(memberId, fullnameNode);
                 var caret = editorSession.sessionView.getCaret(memberId);
                 if (caret) {
-                    caret.toggleHandleVisibility();
+                    //caret.toggleHandleVisibility();
                 }
             };
             memberListDiv.appendChild(avatarDiv);
